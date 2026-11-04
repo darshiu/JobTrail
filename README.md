@@ -11,6 +11,10 @@ A job-application tracker with a drag-and-drop Kanban board. Sign up, and you ge
 - Light and dark theme, saved in the browser
 - Responsive layout
 
+
+https://github.com/user-attachments/assets/b8e61dc4-7b60-4c4d-bbd2-84319d103da8
+
+
 ## Tech stack
 
 - [Next.js 16](https://nextjs.org) (App Router, `cacheComponents`) and React 19
