@@ -1,11 +1,15 @@
+"use client";
+
 import ImageTabs from "@/components/image-tabs";
 import { Button } from "@/components/ui/button";
+import { useSession } from "@/lib/auth/auth-client";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 
 const HIGHLIGHTS = ["Free forever", "No credit card", "Set up in a minute"];
 
 export default function Home() {
+  const { data: session, isPending } = useSession();
   return (
     <div className="flex min-h-[calc(100dvh-var(--nav-h))] flex-col bg-background">
       <main className="flex-1">
@@ -28,7 +32,7 @@ export default function Home() {
                 Capture, organize, and manage your job search in one place — from
                 wish list to offer.
               </p>
-              <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+              {!isPending && !session?.user ? (<div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Link href="/sign-up" className="w-full sm:w-auto">
                   <Button
                     size="lg"
@@ -46,15 +50,15 @@ export default function Home() {
                     Log in
                   </Button>
                 </Link>
-              </div>
-              <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+              </div>) : null }
+              {!isPending && !session?.user ? (<ul className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
                 {HIGHLIGHTS.map((item) => (
                   <li key={item} className="flex items-center gap-1.5">
                     <CheckCircle2 className="h-4 w-4 text-brand" />
                     {item}
                   </li>
                 ))}
-              </ul>
+              </ul>) : null }
             </div>
           </div>
         </section>
